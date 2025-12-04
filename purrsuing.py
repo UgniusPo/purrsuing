@@ -2,7 +2,7 @@ import pygame
 
 #Set up pygame
 pygame.init()
-screen =  pygame.display.set_mode((1920, 1080))
+screen =  pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 clock = pygame.time.Clock()
 running = True
 dt = 0
@@ -10,10 +10,20 @@ background = pygame.image.load('mapConcept.png')
 
 font = pygame.font.Font('smallCake.otf', 20)
 
-text = font.render('Coins: ', True, 'yellow', 'black')
-textRect = text.get_rect()
+textC = font.render('Coins: ', True, 'yellow', 'black')
+textCrop = font.render('Crops: ', True, 'green', 'black')
+textFood = font.render('Food: ', True, 'brown', 'black')
+textOx = font.render('Oxygen: ', True, 'blue', 'black')
 
-textRect.center = (1600, 150)
+coinsRect = textC.get_rect()
+cropRect = textCrop.get_rect()
+foodRect = textFood.get_rect()
+oxRect = textOx.get_rect()
+
+coinsRect.center = (1450, 50)
+cropRect.center = (1450, 75)
+foodRect.center = (1450, 100)
+oxRect.center = (1450, 125)
 
 #sets player position
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
@@ -28,7 +38,10 @@ while running:
         player = pygame.image.load("tempCharU.png").convert_alpha() #temp for player sprite
         screen.blit(background, (0, 0))
         screen.blit(player, (player_pos))
-        screen.blit(text, textRect)
+        screen.blit(textC, coinsRect)
+        screen.blit(textCrop, cropRect)
+        screen.blit(textFood, foodRect)
+        screen.blit(textOx, oxRect)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
